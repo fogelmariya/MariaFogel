@@ -21,7 +21,7 @@ public class Homework1 {
 
     //1 Create a new test
     @Test
-    public void first() {
+    public void homePageTest() {
         //2 Open test site by URL
         WebDriver driver = new ChromeDriver();
         driver.manage().window().maximize();
@@ -46,7 +46,7 @@ public class Homework1 {
         Assert.assertEquals(driver.getTitle(), "Home Page");
 
         //7 Assert that there are 4 items on the header section are displayed and they have proper texts
-         WebElement top = driver.findElements(By.cssSelector(".uui-navigation")).get(0);
+        WebElement top = driver.findElements(By.cssSelector(".uui-navigation")).get(0);
         Assert.assertEquals(top.getText().split("\\n").length, 4);
         Assert.assertEquals(driver.findElement(By.cssSelector("[href='index.html']")).getText(), "HOME");
         Assert.assertEquals(driver.findElement(By.cssSelector("[href='contacts.html']")).getText().toLowerCase(), "contact form");
@@ -75,8 +75,8 @@ public class Homework1 {
         WebElement mainTextDown = driver.findElement(By.cssSelector("p.main-txt"));
         Assert.assertTrue(mainTextDown.isDisplayed());
         Assert.assertEquals("LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT" +
-                " LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA" +
-                " COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.",
+                        " LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA" +
+                        " COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.",
                 mainTextDown.getText());
 
         //11 Assert a text of the sub header
