@@ -1,4 +1,4 @@
-
+package hw1;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -46,12 +46,12 @@ public class Homework1 {
         Assert.assertEquals(driver.getTitle(), "Home Page");
 
         //7 Assert that there are 4 items on the header section are displayed and they have proper texts
-        WebElement top = driver.findElements(By.cssSelector(".uui-navigation")).get(0);
-        Assert.assertEquals(top.getText().split("\\n").length, 4);
-        Assert.assertEquals(driver.findElement(By.cssSelector("[href='index.html']")).getText(), "HOME");
-        Assert.assertEquals(driver.findElement(By.cssSelector("[href='contacts.html']")).getText().toLowerCase(), "contact form");
-        Assert.assertEquals(driver.findElement(By.cssSelector(".dropdown")).getText().toLowerCase().replaceAll(" ", ""), "service");
-        Assert.assertEquals(driver.findElement(By.cssSelector("[href='metals-colors.html']")).getText().toLowerCase(), "metals & colors");
+        List<WebElement> topElements = driver.findElements(By.cssSelector(".nav > li"));
+        Assert.assertTrue(topElements.size() == 4);
+        Assert.assertEquals(topElements.get(0).getText(), "HOME");
+        Assert.assertEquals(topElements.get(1).getText().toLowerCase(), "contact form");
+        Assert.assertEquals(topElements.get(2).getText().toLowerCase().replaceAll(" ", ""), "service");
+        Assert.assertEquals(topElements.get(3).getText().toLowerCase(), "metals & colors");
 
         //8 Assert that there are 4 images on the Index Page and they are displayed
         List<WebElement> homeImage = driver.findElements(By.className("benefit-icon"));
@@ -71,18 +71,17 @@ public class Homework1 {
         //10 Assert a text of the main header
         WebElement mainTextTop = driver.findElement(By.cssSelector("h3.main-title"));
         Assert.assertTrue(mainTextTop.isDisplayed());
-        Assert.assertEquals("EPAM FRAMEWORK WISHES…", mainTextTop.getText());
+        Assert.assertEquals(mainTextTop.getText(), "EPAM FRAMEWORK WISHES…");
         WebElement mainTextDown = driver.findElement(By.cssSelector("p.main-txt"));
         Assert.assertTrue(mainTextDown.isDisplayed());
-        Assert.assertEquals("LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT" +
+        Assert.assertEquals(mainTextDown.getText(), "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT" +
                         " LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA" +
-                        " COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.",
-                mainTextDown.getText());
+                        " COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
 
         //11 Assert a text of the sub header
         WebElement subHeadText = driver.findElements(By.cssSelector("h3.text-center")).get(1);
         Assert.assertTrue(subHeadText.isDisplayed());
-        Assert.assertEquals("JDI GITHUB", subHeadText.getText());
+        Assert.assertEquals(subHeadText.getText(), "JDI GITHUB");
 
         //12 Assert that JDI GITHUB is a link and has a proper URL
         Assert.assertEquals(subHeadText.findElement(By.tagName("a")).getAttribute("href"), "https://github.com/epam/JDI");
