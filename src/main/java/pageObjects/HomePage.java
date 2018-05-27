@@ -70,7 +70,7 @@ public class HomePage {
     }
 
     public void checkHeaderItems(List<String > topItemsExpected) {
-        Assert.assertTrue(topItems.size() == 4);
+        Assert.assertEquals(topItems.size(), 4);
 
         for (WebElement topItem: topItems) {
             Assert.assertTrue(topItemsExpected.contains(topItem.getText().toLowerCase()));
