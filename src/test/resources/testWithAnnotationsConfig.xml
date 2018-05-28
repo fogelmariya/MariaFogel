@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Simple Suite" verbose="1" >
+    <test name="Test Scope">
+        <classes>
+            <class name="hw2.ex3.SimpleTestWithAnnotations"/>
+        </classes>
+    </test>
+</suite>
