@@ -10,7 +10,6 @@ import org.testng.annotations.Test;
 import pageObjects.DifferentElementsPage;
 import pageObjects.HomePageSelenide;
 
-import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
 import static enums.CheckboxesEnum.WATER;
 import static enums.CheckboxesEnum.WIND;
@@ -35,13 +34,13 @@ public class DifferentElementsTest extends BaseSelenide {
     @Test
     public void servicePageTest() {
         //1 Open test site by URL
-        open("https://epam.github.io/JDI/");
+        homePage.openSite();
 
         //2 Assert Browser title
         homePage.checkHomePageTitle();
 
         //3 Perform login
-        homePage.login("epam", "1234");
+        homePage.login(Users.PITER_CHAILOVSKII.login, Users.PITER_CHAILOVSKII.password);
 
         //4 Assert User name in the left-top side of screen that user is loggined
         homePage.checkUserName(Users.PITER_CHAILOVSKII.userName);
