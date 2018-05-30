@@ -15,18 +15,18 @@ import java.util.List;
 
 public class HomePageWithPageObjectTest {
 
-    List<String> textUnderImageExpected = Arrays.asList(
+    private List<String> textUnderImageExpected = Arrays.asList(
             "To include good practices and ideas from successful EPAM project",
             "To be flexible and customizable", "To be multiplatform",
             "Already have good base (about 20 internal and some external projects), wish to get more…");
 
-    List<String> topItemsExpected = Arrays.asList("home", "contact form", "service", "metals & colors");
-    String mainTextTopExpected = "EPAM FRAMEWORK WISHES…";
-    String mainTextDownExpected = "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT" +
+    private List<String> topItemsExpected = Arrays.asList("home", "contact form", "service", "metals & colors");
+    private String mainTextTopExpected = "EPAM FRAMEWORK WISHES…";
+    private String mainTextDownExpected = "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT" +
             " LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA" +
             " COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.";
-    String subHeaderText = "JDI GITHUB";
-    String textLink = "https://github.com/epam/JDI";
+    private String subHeaderText = "JDI GITHUB";
+    private String textLink = "https://github.com/epam/JDI";
 
     private WebDriver driver;
     private ChromeOptions options;
@@ -48,7 +48,6 @@ public class HomePageWithPageObjectTest {
         driver.manage().window().maximize();
     }
 
-    //1 Create a new test
     @Test
     public void homePageTest() {
         //2 Open test site by URL
