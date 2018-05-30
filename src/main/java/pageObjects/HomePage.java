@@ -7,7 +7,6 @@ import org.testng.Assert;
 
 import java.util.List;
 
-import static com.codeborne.selenide.Selenide.open;
 import static org.testng.Assert.assertTrue;
 
 public class HomePage {
@@ -51,8 +50,8 @@ public class HomePage {
     @FindBy(tagName = "footer")
     private WebElement footer;
 
-    public void openSite(){
-        open("https://epam.github.io/JDI/");
+    public void open(WebDriver driver){
+        driver.navigate().to("https://epam.github.io/JDI/");
     }
 
     public void login(String login, String password){
