@@ -109,6 +109,18 @@
             <artifactId>aspectjtools</artifactId>
             <version>${aspectj.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java8</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>3.0.2</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -119,7 +131,7 @@
                     <version>2.20.1</version>
                     <configuration>
                         <suiteXmlFiles>
-                            <suiteXmlFile>src\test\resources\${suiteXmlFile}}</suiteXmlFile>
+                            <suiteXmlFile>src/test/resources/${suiteXmlFile}</suiteXmlFile>
                         </suiteXmlFiles>
                         <argLine>
                             -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
