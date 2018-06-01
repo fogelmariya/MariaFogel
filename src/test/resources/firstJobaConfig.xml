@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Simple Suite" verbose="1" >
+    <test name="Test Scope 1">
+        <classes>
+            <class name="hw5.SimpleJenkinsTest"/>
+            <class name="hw4.DatesPageTest"/>
+            <class name="hw4.DifferentElementsPageTest"/>
+        </classes>
+    </test>
+</suite>
