@@ -6,7 +6,8 @@ public enum ColorsEnum {
     RED("Red"),
     GREEN("Green"),
     BLUE("Blue"),
-    COLOR("Colors");
+    COLOR("Color"),
+    COLORS("Colors");
 
     public String text;
 
