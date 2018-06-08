@@ -3,36 +3,50 @@ package hw4;
 import base.BaseSelenide;
 import com.codeborne.selenide.Configuration;
 import enums.Services;
-import enums.Users;
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.BeforeSuite;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Flaky;
+import io.qameta.allure.Story;
+import listeners.AllureAttachmentListener;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.DifferentElementsPage;
 import pageObjects.HomePageSelenide;
 
 import static com.codeborne.selenide.Selenide.page;
-import static enums.CheckboxesEnum.WATER;
-import static enums.CheckboxesEnum.WIND;
-import static enums.ColorsEnum.COLOR;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static enums.ColorsEnum.COLORS;
 import static enums.ColorsEnum.YELLOW;
+import static enums.ElementsEnum.WATER;
+import static enums.ElementsEnum.WIND;
 import static enums.MetalsEnum.METALS;
 import static enums.MetalsEnum.SELEN;
+import static enums.Users.PITER_CHAILOVSKII;
 
-public class DifferentElementsTest extends BaseSelenide {
+@Feature("Home and Different page")
+@Story("Login and check interface")
+@Listeners({AllureAttachmentListener.class})
+public class DifferentElementsPageTest extends BaseSelenide {
 
-    private WebDriver driver;
     private HomePageSelenide homePage;
     private DifferentElementsPage differentElementsPage;
 
-    @BeforeSuite
+    @BeforeClass
     public void before() {
         Configuration.screenshots = true;
         homePage = page(HomePageSelenide.class);
         differentElementsPage = page(DifferentElementsPage.class);
     }
 
+    @AfterClass
+    public void after(){
+        getWebDriver().close();
+    }
+
+    @Flaky
     @Test
-    public void servicePageTest() {
+    public void servicesAndDifferentElementsPageTest() {
         //1 Open test site by URL
         homePage.openSite();
 
@@ -40,10 +54,10 @@ public class DifferentElementsTest extends BaseSelenide {
         homePage.checkHomePageTitle();
 
         //3 Perform login
-        homePage.login(Users.PITER_CHAILOVSKII.login, Users.PITER_CHAILOVSKII.password);
+        homePage.login(PITER_CHAILOVSKII);
 
         //4 Assert User name in the left-top side of screen that user is loggined
-        homePage.checkUserName(Users.PITER_CHAILOVSKII.userName);
+        homePage.checkUserName(PITER_CHAILOVSKII);
 
         //5 Check interface on Home page, it contains all needed elements.
         homePage.checkMainInterface();
@@ -67,28 +81,28 @@ public class DifferentElementsTest extends BaseSelenide {
         differentElementsPage.checkLeftSection();
 
         //12 Select checkboxes
-        differentElementsPage.selectcheckboxes(WATER.text);
-        differentElementsPage.selectcheckboxes(WIND.text);
+        differentElementsPage.selectCheckboxes(WATER);
+        differentElementsPage.selectCheckboxes(WIND);
 
         //13 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox.
-         differentElementsPage.checkLogCondition(WIND.text, true);
-         differentElementsPage.checkLogCondition(WATER.text, true);
+        differentElementsPage.checkLogCondition(WIND.text, true);
+        differentElementsPage.checkLogCondition(WATER.text, true);
 
         //14 Select radio
-        differentElementsPage.checkRadioButtons(SELEN.text);
+        differentElementsPage.checkRadioButtons(SELEN);
 
         //15 Assert that for radiobutton there is a log row and value is corresponded to the status of radiobutton.
         differentElementsPage.checkLogValue(METALS.text, SELEN.text);
 
         //16 Select in dropdown
-        differentElementsPage.checkDropdown(YELLOW.text);
+        differentElementsPage.checkDropdown(YELLOW);
 
         //17 Assert that for dropdown there is a log row and value is corresponded to the selected value.
-        differentElementsPage.checkLogValue(COLOR.text, YELLOW.text);
+        differentElementsPage.checkLogValue(COLORS.text, YELLOW.text);
 
         //18 Unselect and assert checkboxes
-        differentElementsPage.checkUnselect(WATER.text);
-        differentElementsPage.checkUnselect(WIND.text);
+        differentElementsPage.checkUnselect(WATER);
+        differentElementsPage.checkUnselect(WIND);
 
         //19 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox.
         differentElementsPage.checkLogCondition(WIND.text, false);

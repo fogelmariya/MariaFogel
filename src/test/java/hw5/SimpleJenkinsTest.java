@@ -1,97 +1,102 @@
 package hw5;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
+import base.BaseSelenide;
+import com.codeborne.selenide.Configuration;
+import enums.Services;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Flaky;
+import io.qameta.allure.Story;
+import listeners.AllureAttachmentListener;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+import pageObjects.DifferentElementsPage;
+import pageObjects.HomePageSelenide;
 
-import java.util.Arrays;
-import java.util.List;
+import static com.codeborne.selenide.Selenide.page;
+import static enums.ColorsEnum.*;
+import static enums.ElementsEnum.WATER;
+import static enums.ElementsEnum.WIND;
+import static enums.MetalsEnum.METALS;
+import static enums.MetalsEnum.SELEN;
+import static enums.Users.PITER_CHAILOVSKII;
 
-import static org.testng.Assert.assertTrue;
+@Feature("Different Element page")
+@Story("Login and check interface")
+@Listeners({AllureAttachmentListener.class})
+public class SimpleJenkinsTest extends BaseSelenide {
+    private HomePageSelenide homePage;
+    private DifferentElementsPage differentElementsPage;
 
-public class SimpleJenkinsTest {
+    @BeforeClass
+    public void before() {
+        Configuration.screenshots = true;
+        homePage = page(HomePageSelenide.class);
+        differentElementsPage = page(DifferentElementsPage.class);
+    }
 
-    private List<String> textUnderImageExpected = Arrays.asList(
-            "To include good practices and ideas from successful EPAM project",
-            "To be flexible and customizable", "To be multiplatform",
-            "Already have good base (about 20 internal and some external projects), wish to get more…");
-
+    @Flaky
     @Test
-    public void homePageTest() {
-        //2 Open test site by URL
-        WebDriver driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        driver.navigate().to("https://epam.github.io/JDI/");
+    public void servicesAndDifferentElementsPageTest() {
+        //1 Open test site by URL
+        homePage.openSite();
 
-        //3 Assert Browser title
-        Assert.assertEquals(driver.getTitle(), "Home Page");
+        //2 Assert Browser title
+        homePage.checkHomePageTitle();
 
-        //4 Perform login
-        WebElement userIcon = driver.findElement(By.cssSelector(".profile-photo"));
-        userIcon.click();
+        //3 Perform login
+        homePage.login(PITER_CHAILOVSKII);
 
-        driver.findElement(By.cssSelector("#Name")).sendKeys("epam");
-        driver.findElement(By.cssSelector("#Password")).sendKeys("1234");
-        driver.findElement(By.cssSelector(".form-horizontal [type='submit']")).click();
+        //4 Assert User name in the left-top side of screen that user is loggined
+        homePage.checkUserName(PITER_CHAILOVSKII);
 
-        //5 Assert User name in the left-top side of screen that user is loggined
-        WebElement userName = driver.findElement(By.cssSelector(".profile-photo span"));
-        Assert.assertEquals(userName.getText(), "PITER CHAILOVSKII");
+        //5 Check interface on Home page, it contains all needed elements.
+        homePage.checkMainInterface();
 
-        //6 Assert Browser title
-        Assert.assertEquals(driver.getTitle(), "Home Pag");
+        //6 Click on "Service" subcategory in the header and check that drop down contains options
+        homePage.checkServiceDropdown(Services.getServices());
 
-        //7 Assert that there are 4 items on the header section are displayed and they have proper texts
-        List<WebElement> topElements = driver.findElements(By.cssSelector(".nav > li"));
-        Assert.assertEquals(topElements.size(), 4);
-        Assert.assertEquals(topElements.get(0).getText(), "HOME");
-        Assert.assertEquals(topElements.get(1).getText().toLowerCase(), "contact form");
-        Assert.assertEquals(topElements.get(2).getText().toLowerCase().replaceAll(" ", ""), "service");
-        Assert.assertEquals(topElements.get(3).getText().toLowerCase(), "metals & colors");
+        //7 Click on Service subcategory in the left section and check that drop down contains options
+        homePage.checkServiceDropdownLeft(Services.getServices());
 
-        //8 Assert that there are 4 images on the Index Page and they are displayed
-        List<WebElement> homeImage = driver.findElements(By.className("benefit-icon"));
-        Assert.assertEquals(homeImage.size(), 4);
-        for (WebElement image : homeImage) {
-            assertTrue(image.isDisplayed());
-        }
+        //8 Open through the header menu Service -> Different Elements Page
+        homePage.openDifferentElementsPage();
 
-        //9 Assert that there are 4 texts on the Index Page under icons and they have proper text
-        List<WebElement> homeText = driver.findElements(By.className("benefit-txt"));
-        Assert.assertEquals(homeText.size(), 4);
-        for (WebElement text : homeText) {
-            assertTrue(text.isDisplayed());
-            assertTrue(textUnderImageExpected.contains(text.getText().replaceAll("\\n", " ")));
-        }
+        //9 Check interface on Different elements page, it contains all needed elements
+        differentElementsPage.checkElements();
 
-        //10 Assert a text of the main header
-        WebElement mainTextTop = driver.findElement(By.cssSelector("h3.main-title"));
-        Assert.assertTrue(mainTextTop.isDisplayed());
-        Assert.assertEquals(mainTextTop.getText(), "EPAM FRAMEWORK WISHES…");
-        WebElement mainTextDown = driver.findElement(By.cssSelector("p.main-txt"));
-        Assert.assertTrue(mainTextDown.isDisplayed());
-        Assert.assertEquals(mainTextDown.getText(), "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT" +
-                " LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA" +
-                " COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
+        //10 Assert that there is Right Section
+        differentElementsPage.checkRightSection();
 
-        //11 Assert a text of the sub header
-        WebElement subHeadText = driver.findElements(By.cssSelector("h3.text-center")).get(1);
-        Assert.assertTrue(subHeadText.isDisplayed());
-        Assert.assertEquals(subHeadText.getText(), "JDI GITHUB");
+        //11 Assert that there is Left Section
+        differentElementsPage.checkLeftSection();
 
-        //12 Assert that JDI GITHUB is a link and has a proper URL
-        Assert.assertEquals(subHeadText.findElement(By.tagName("a")).getAttribute("href"), "https://github.com/epam/JDI");
+        //12 Select checkboxes
+        differentElementsPage.selectCheckboxes(WATER);
+        differentElementsPage.selectCheckboxes(WIND);
 
-        //13 Assert that there is Left Section
-        Assert.assertTrue(driver.findElement(By.cssSelector(".sidebar-menu")).isDisplayed());
+        //13 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox.
+        differentElementsPage.checkLogCondition(WIND.text, true);
+        differentElementsPage.checkLogCondition(WATER.text, true);
 
-        //14 Assert that there is Footer
-        Assert.assertTrue(driver.findElement(By.tagName("footer")).isDisplayed());
+        //14 Select radio
+        differentElementsPage.checkRadioButtons(SELEN);
 
-        //15 Close Browser
-        driver.close();
+        //15 Assert that for radiobutton there is a log row and value is corresponded to the status of radiobutton.
+        differentElementsPage.checkLogValue(METALS.text, SELEN.text);
+
+        //16 Select in dropdown
+        differentElementsPage.checkDropdown(YELLOW);
+
+        //17 Assert that for dropdown there is a log row and value is corresponded to the selected value.
+        differentElementsPage.checkLogValue(COLORS.text, GREEN.text);
+
+        //18 Unselect and assert checkboxes
+        differentElementsPage.checkUnselect(WATER);
+        differentElementsPage.checkUnselect(WIND);
+
+        //19 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox.
+        differentElementsPage.checkLogCondition(WIND.text, false);
+        differentElementsPage.checkLogCondition(WATER.text, false);
     }
 }

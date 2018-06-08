@@ -4,11 +4,14 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import enums.Users;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
+import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 
@@ -54,29 +57,30 @@ public class HomePageSelenide {
     private ElementsCollection servicesDropdownLeft;
 
 
-    public void openSite(){
+    @Step
+    public void openSite() {
+        open("https://epam.github.io/JDI/");
     }
 
+    @Step
     public void checkHomePageTitle() {
-                Assert.assertEquals(getWebDriver().getTitle(), "Home Page");
+        Assert.assertEquals(getWebDriver().getTitle(), "Home Page");
     }
 
-    public void login(String login, String password){
-//        $(".profile-photo").click();
-//        $("#Name").sendKeys(login);
-//        $("#Password").sendKeys(password);
-//        $(".form-horizontal [type='submit']").click();
-
+    @Step
+    public void login(Users user) {
         userIcon.click();
-        loginInput.sendKeys(login);
-        passwordInput.sendKeys(password);
+        loginInput.sendKeys(user.login);
+        passwordInput.sendKeys(user.password);
         submitButton.click();
     }
 
-    public void checkUserName(String name) {
-        userName.shouldHave(Condition.text(name));
+    @Step
+    public void checkUserName(Users user) {
+        userName.shouldHave(Condition.text(user.userName));
     }
 
+    @Step
     public void checkMainInterface() {
         homeImages.shouldHaveSize(4);
         for (SelenideElement image : homeImages) {
@@ -92,26 +96,30 @@ public class HomePageSelenide {
         mainTextTop.should(Condition.visible);
     }
 
-    public void checkServiceDropdown(List<String> servicesexpected) {
+    @Step
+    public void checkServiceDropdown(List<String> servicesExpected) {
         services.click();
         servicesDropdown.shouldHaveSize(8);
-        servicesDropdown.shouldHave(CollectionCondition.texts(servicesexpected));
+        servicesDropdown.shouldHave(CollectionCondition.texts(servicesExpected));
     }
 
-    public void checkServiceDropdownLeft(List<String> servicesexpected) {
+    @Step
+    public void checkServiceDropdownLeft(List<String> servicesExpected) {
         servicesLeft.click();
 
         for (String service : servicesDropdownLeft.texts()) {
-            Assert.assertTrue(servicesexpected.contains(service.toUpperCase()));
+            Assert.assertTrue(servicesExpected.contains(service.toUpperCase()));
         }
     }
 
+    @Step
     public void openDifferentElementsPage() {
         services.click();
         servicesDropdown.get(6).click();
         Assert.assertEquals(getWebDriver().getTitle(), "Different Element");
     }
 
+    @Step
     public void openDatesPage() {
         services.click();
         servicesDropdown.get(1).click();

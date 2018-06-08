@@ -1,19 +1,27 @@
 package hw4;
 
-import enums.Users;
-import org.testng.annotations.BeforeSuite;
+import base.BaseSelenide;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
+import listeners.AllureAttachmentListener;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.DatesPage;
 import pageObjects.HomePageSelenide;
 
 import static com.codeborne.selenide.Selenide.page;
+import static enums.Users.PITER_CHAILOVSKII;
 
-public class DatesPageTest {
+@Feature("Dates page")
+@Story("Login and check interface")
+@Listeners({AllureAttachmentListener.class})
+public class DatesPageTest extends BaseSelenide {
 
     private HomePageSelenide homePage;
     private DatesPage datesPage;
 
-    @BeforeSuite
+    @BeforeClass
     public void before() {
         homePage = page(HomePageSelenide.class);
         datesPage = page(DatesPage.class);
@@ -28,10 +36,10 @@ public class DatesPageTest {
         homePage.checkHomePageTitle();
 
         //3 Perform login
-        homePage.login(Users.PITER_CHAILOVSKII.login, Users.PITER_CHAILOVSKII.password);
+        homePage.login(PITER_CHAILOVSKII);
 
         //4 Assert User name in the left-top side of screen that user is loggined
-        homePage.checkUserName(Users.PITER_CHAILOVSKII.userName);
+        homePage.checkUserName(PITER_CHAILOVSKII);
 
         //5 Open through the header menu Service -> Dates Page
         homePage.openDatesPage();

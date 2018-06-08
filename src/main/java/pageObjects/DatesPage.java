@@ -6,6 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
+import ru.yandex.qatools.allure.annotations.Step;
 
 import java.util.List;
 
@@ -19,18 +20,11 @@ public class DatesPage {
     @FindBy(css = ".ui-slider-handle")
     private List<SelenideElement> nodes;
 
-    @FindBy(css = ".logs > li")
-    private ElementsCollection log;
 
     private SelenideElement sliderLeft;
     private SelenideElement sliderRight;
-//
-//    @FindBy(css = "div:nth-child(2) > div > a:nth-child(1)")
-//    private SelenideElement sliderLeft;
-//
-//    @FindBy(css = "div:nth-child(2) > div > a:nth-child(3)")
-//    private SelenideElement sliderRight;
 
+    @Step
     public void setSliderRange(int left, int right) {
         sliderLeft = nodes.get(0);
         sliderRight = nodes.get(1);
@@ -55,21 +49,19 @@ public class DatesPage {
         sliderRight.shouldHave(text(String.valueOf(right)));
     }
 
-
+    @Step
     public void checkLog(int left, int right) {
         boolean exist1 = false;
         boolean exist2 = false;
-        ElementsCollection logg = $$(".logs > li");
-        System.out.println(logg.texts());
-        for (SelenideElement text: logg) {
-            if (text.getText().contains("Range 2(To):" + right + " link clicked"))
+        ElementsCollection logs = $$(".logs > li");
+        System.out.println(logs.texts());
+        for (SelenideElement log: logs) {
+            if (log.getText().contains("Range 2(To):" + right + " link clicked"))
                 exist1 = true;
-            if (text.getText().contains("Range 2(From):" + left + " link clicked"))
+            if (log.getText().contains("Range 2(From):" + left + " link clicked"))
                 exist2 = true;
         }
         Assert.assertTrue(exist1);
         Assert.assertTrue(exist2);
-       // Assert.assertTrue(logg.contains("Range 2(To):" + right + "link clicked"));
-        //Assert.assertTrue(logg.contains("Range 2(From):" + left + "link clicked"));
     }
 }

@@ -1,23 +1,23 @@
 package base;
 
-import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterSuite;
+import pageObjects.DatesPage;
+import pageObjects.DifferentElementsPage;
+import pageObjects.HomePageSelenide;
 
-import static com.codeborne.selenide.Configuration.browser;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class BaseSelenide {
 
-    WebDriver driver;
+    private HomePageSelenide homePage;
+    private DifferentElementsPage differentElementsPage;
+    private DatesPage datesPage;
 
-    @BeforeClass
-    public void setUp() {
-        browser = "chrome";
-    }
-
-    @AfterClass(alwaysRun = true)
+    @AfterSuite(alwaysRun = true)
     public void tearDown() {
+//        homePage = page(HomePageSelenide.class);
+//        differentElementsPage = page(DifferentElementsPage.class);
+//        datesPage = page(DatesPage.class);
         getWebDriver().close();
     }
 }
