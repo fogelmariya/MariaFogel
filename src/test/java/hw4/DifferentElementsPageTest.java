@@ -1,13 +1,11 @@
 package hw4;
 
 import base.BaseSelenide;
-import com.codeborne.selenide.Configuration;
 import enums.Services;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Flaky;
 import io.qameta.allure.Story;
 import listeners.AllureAttachmentListener;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -15,7 +13,6 @@ import pageObjects.DifferentElementsPage;
 import pageObjects.HomePageSelenide;
 
 import static com.codeborne.selenide.Selenide.page;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static enums.ColorsEnum.COLORS;
 import static enums.ColorsEnum.YELLOW;
 import static enums.ElementsEnum.WATER;
@@ -34,14 +31,10 @@ public class DifferentElementsPageTest extends BaseSelenide {
 
     @BeforeClass
     public void before() {
-        Configuration.screenshots = true;
+//        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+//        Configuration.browser = "chrome";
         homePage = page(HomePageSelenide.class);
         differentElementsPage = page(DifferentElementsPage.class);
-    }
-
-    @AfterClass
-    public void after(){
-        getWebDriver().close();
     }
 
     @Flaky

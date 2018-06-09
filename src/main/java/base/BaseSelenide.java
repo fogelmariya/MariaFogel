@@ -1,23 +1,22 @@
 package base;
 
+import com.codeborne.selenide.Configuration;
 import org.testng.annotations.AfterSuite;
-import pageObjects.DatesPage;
-import pageObjects.DifferentElementsPage;
-import pageObjects.HomePageSelenide;
-
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import org.testng.annotations.BeforeSuite;
 
 public class BaseSelenide {
 
-    private HomePageSelenide homePage;
-    private DifferentElementsPage differentElementsPage;
-    private DatesPage datesPage;
 
-    @AfterSuite(alwaysRun = true)
+    @BeforeSuite
+    public void before(){
+        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        Configuration.browser = "chrome";
+
+    }
+
+    @AfterSuite()
     public void tearDown() {
-//        homePage = page(HomePageSelenide.class);
-//        differentElementsPage = page(DifferentElementsPage.class);
-//        datesPage = page(DatesPage.class);
-        getWebDriver().close();
+
+       // getWebDriver().close();
     }
 }

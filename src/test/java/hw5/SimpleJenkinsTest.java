@@ -30,6 +30,9 @@ public class SimpleJenkinsTest extends BaseSelenide {
 
     @BeforeClass
     public void before() {
+        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        Configuration.browser = "chrome";
+
         Configuration.screenshots = true;
         homePage = page(HomePageSelenide.class);
         differentElementsPage = page(DifferentElementsPage.class);

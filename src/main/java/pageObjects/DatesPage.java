@@ -39,7 +39,7 @@ public class DatesPage {
         System.out.println(step);
 
         if (left > 0) {
-            actions().dragAndDropBy(sliderLeft, (int) (step * left - step), 0).build().perform();
+            actions().dragAndDropBy(sliderLeft, (int) (step * left ), 0).build().perform();
         }
         if (right < 100) {
             actions().dragAndDropBy(sliderRight, (int) ((right - 100) * step - step), 0).build().perform();
