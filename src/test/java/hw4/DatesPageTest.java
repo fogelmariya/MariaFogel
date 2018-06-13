@@ -1,6 +1,7 @@
 package hw4;
 
 import base.BaseSelenide;
+import com.codeborne.selenide.Configuration;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import listeners.AllureAttachmentListener;
@@ -23,6 +24,8 @@ public class DatesPageTest extends BaseSelenide {
 
     @BeforeClass
     public void before() {
+        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        Configuration.browser = "chrome";
         homePage = page(HomePageSelenide.class);
         datesPage = page(DatesPage.class);
     }

@@ -1,6 +1,7 @@
 package hw4;
 
 import base.BaseSelenide;
+import com.codeborne.selenide.Configuration;
 import enums.Services;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Flaky;
@@ -31,8 +32,8 @@ public class DifferentElementsPageTest extends BaseSelenide {
 
     @BeforeClass
     public void before() {
-//        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-//        Configuration.browser = "chrome";
+        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        Configuration.browser = "chrome";
         homePage = page(HomePageSelenide.class);
         differentElementsPage = page(DifferentElementsPage.class);
     }
