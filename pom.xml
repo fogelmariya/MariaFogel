@@ -21,6 +21,13 @@
         </dependency>
 
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.0</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
             <groupId>com.epam.jdi</groupId>
             <artifactId>jdi-uitest-web</artifactId>
             <version>LATEST</version>
@@ -110,6 +117,12 @@
     </dependencies>
 
     <build>
+      <testResources>
+          <testResource>
+              <directory>src/test/resources</directory>
+              <filtering>true</filtering>
+          </testResource>
+      </testResources>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -191,5 +204,34 @@
             </plugin>
         </plugins>
     </reporting>
+
+    <profiles>
+        <profile>
+            <id>jdi-framework</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <domain>https://jdi-framework.github.io/tests/index.htm</domain>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>datatest</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <runner> simpleConfig.xml</runner>
+            </properties>
+        </profile>
+
+        <profile>
+            <id>epam.github</id>
+            <properties>
+                <domain>https://epam.github.io/JDI</domain>
+            </properties>
+        </profile>
+    </profiles>
 
    </project>

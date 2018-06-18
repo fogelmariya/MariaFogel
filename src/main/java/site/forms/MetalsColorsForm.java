@@ -25,7 +25,7 @@ public class MetalsColorsForm extends Form<MetalsColorsData> {
     @JFindBy(css = "#even-selector .radio")
     public RadioButtons evens;
 
-    @FindBy(css = "#elements-checklist p")
+    @FindBy(css = "#elements-checklist .checkbox label")
     public CheckList elements;
 
     @JDropdown(
@@ -52,8 +52,8 @@ public class MetalsColorsForm extends Form<MetalsColorsData> {
 
     @Step
     public void setMetalsColorsData(MetalsColorsData metalsColorsData) {
-        odds.select(metalsColorsData.summary[0]);
-        evens.select(metalsColorsData.summary[1]);
+        odds.select(metalsColorsData.summary.get(0).toString());
+        evens.select(metalsColorsData.summary.get(1).toString());
         metals.select(metalsColorsData.metals);
         elements.check(metalsColorsData.elements);
         colors.select(metalsColorsData.colors);

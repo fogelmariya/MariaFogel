@@ -8,7 +8,7 @@ import entities.User;
 import org.openqa.selenium.support.FindBy;
 
 public class LoginForm extends Form<User> {
-    @FindBy(id="Name") public TextField login;
+    @FindBy(id="Login") public TextField login;
     @FindBy(id="Password") public TextField password;
 
     @Css("[type=submit]") public Button enter;
