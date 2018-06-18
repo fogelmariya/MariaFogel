@@ -25,20 +25,11 @@ public class MetalsColorsData extends DataClass {
 
     public MetalsColorsData() {
         summary = Arrays.asList(3, 8);
-       // summary = new String[]{"3", "8"};
         elements = new String[]{"Water", "Fire"};
         colors = "Red";
         metals = "Selen";
         vegetables = new String[]{"Cucumber", "Tomato"};
     }
-
-//    public MetalsColorsData(String[] summary, String[] elements, String colors, String metals, String[] vegetables) {
-//        this.summary = summary;
-//        this.elements = elements;
-//        this.colors = colors;
-//        this.metals = metals;
-//        this.vegetables = vegetables;
-//    }
 
     // TODO method name does not match with return data type...
     public List<String> dataToListString() {
