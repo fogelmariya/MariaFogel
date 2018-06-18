@@ -21,9 +21,11 @@ public class MetalsColorsResultSection extends Section {
         List<String> logList = actualResultLog.getTextList();
         List<String> data = metalsColorsData.dataToString();
 
+        // TODO In case of JDI, it will be better with log4j
         System.out.println(data.toString());
         System.out.println(logList);
-        for (String string: data) {
+        // !TODO
+        for (String string : data) {
             Assert.assertTrue(logList.contains(string));
         }
     }

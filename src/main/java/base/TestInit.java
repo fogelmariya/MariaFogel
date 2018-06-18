@@ -9,7 +9,7 @@ import site.JdiSite;
 import static com.epam.jdi.uitests.core.settings.JDISettings.logger;
 
 public class TestInit extends TestNGBase {
-    private WebDriver driver;
+    private WebDriver driver; // TODO You don't really need this, I assume
     @BeforeSuite(alwaysRun = true)
     public static void setUp() {
         WebSite.init(JdiSite.class);
