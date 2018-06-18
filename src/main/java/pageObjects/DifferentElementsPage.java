@@ -6,9 +6,9 @@ import com.codeborne.selenide.SelenideElement;
 import enums.ColorsEnum;
 import enums.ElementsEnum;
 import enums.MetalsEnum;
+import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
-import ru.yandex.qatools.allure.annotations.Step;
 
 import static com.codeborne.selenide.Condition.checked;
 import static com.codeborne.selenide.Condition.text;

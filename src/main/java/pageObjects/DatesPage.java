@@ -24,7 +24,7 @@ public class DatesPage {
     private SelenideElement sliderLeft;
     private SelenideElement sliderRight;
 
-    @Step
+    @io.qameta.allure.Step
     public void setSliderRange(int left, int right) {
         sliderLeft = nodes.get(0);
         sliderRight = nodes.get(1);
