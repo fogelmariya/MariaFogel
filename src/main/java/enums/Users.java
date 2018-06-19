@@ -1,18 +1,31 @@
 package enums;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 // TODO This might be a simple class, actually. What is the reason of enum here ?
 // TODO Anyway, wrong class name
 // TODO Lombok ? Basically, fields should be private...
-public enum Users {
+
+@AllArgsConstructor
+@Getter
+public enum Users{
     PITER_CHAILOVSKII("PITER CHAILOVSKII", "epam", "1234");
 
-    public String userName;
-    public String login;
-    public String password;
+    private String userName;
+    private String login;
+    private String password;
 
-    Users(String userName, String login, String password){
-        this.userName = userName;
-        this.login = login;
-        this.password = password;
+    public String getLogin() {
+        return login;
     }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUserName(){
+        return userName;
+    }
+
 }
