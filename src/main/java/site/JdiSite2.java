@@ -50,7 +50,6 @@ public class JdiSite2 extends WebSite {
     @Step
     public static void openMetalsColorsPage() {
         headerMenu.select(HeaderMenuItems.METALS_COLORS.item);
-       // metalsColorsPage.checkOpened();
     }
 
     @Step

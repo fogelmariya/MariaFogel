@@ -17,16 +17,12 @@ import static site.JdiSite2.*;
 
 public class MetalsColorsPageWithDataTest2 extends TestInit {
 
-//    private JavaPropertyLoader javaPropertyLoader = new JavaPropertyLoader();
-//    private String url = javaPropertyLoader.getProperty("domain");
-
-
     @BeforeMethod
     public void openHomePage() {
         //1 Login on JDI site as User
         JdiSite2.open();
         login(new User());
-        //homePage.checkOpened();
+
         //2 Open Metals & Colors page by Header menu
         openMetalsColorsPage();
     }
@@ -43,10 +39,6 @@ public class MetalsColorsPageWithDataTest2 extends TestInit {
 
     @Test(dataProvider = "jsonData")
     public void jsonDataMetalsColorsTest(MetalsColorsData metalsColorsData) {
-
-
-        //metalsColorsPage.checkOpened();
-
         //3
         metalsColorsPage.metalsColorsForm.setMetalsColorsData(metalsColorsData);
 

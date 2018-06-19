@@ -70,14 +70,14 @@ public class HomePageSelenide {
     @Step
     public void login(Users user) {
         userIcon.click();
-        loginInput.sendKeys(user.login);
-        passwordInput.sendKeys(user.password);
+        loginInput.sendKeys(user.getLogin());
+        passwordInput.sendKeys(user.getPassword());
         submitButton.click();
     }
 
     @Step
     public void checkUserName(Users user) {
-        userName.shouldHave(Condition.text(user.userName));
+        userName.shouldHave(Condition.text(user.getUserName()));
     }
 
     @Step

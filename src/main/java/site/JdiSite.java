@@ -8,10 +8,9 @@ import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JPage;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JSite;
 import entities.MetalsColorsData;
 import entities.User;
-import enums.HeaderMenuItems;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
-import site.forms.LoginForm;
+import site.forms.LoginnForm;
 import site.pages.HomePageJdi;
 import site.pages.MetalsColorsPage;
 import site.sections.Header;
@@ -21,7 +20,7 @@ import site.sections.Header;
 public class JdiSite extends WebSite {
 
     public static HomePageJdi homePage;
-    public static LoginForm loginForm;
+    public static LoginnForm loginForm;
     public static Header header;
 
     @JFindBy(css = ".profile-photo")
@@ -49,8 +48,8 @@ public class JdiSite extends WebSite {
     }
 
     @Step
-    public static void openMetalsColorsPage() {
-        headerMenu.select(HeaderMenuItems.METALS_COLORS.item);
+    public static void openPage(String page) {
+        headerMenu.select(page);
         metalsColorsPage.checkOpened();
     }
 

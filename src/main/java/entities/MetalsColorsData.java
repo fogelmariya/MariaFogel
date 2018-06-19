@@ -25,9 +25,11 @@ public class MetalsColorsData extends DataClass {
 
     public MetalsColorsData() {
         summary = Arrays.asList(3, 8);
+        //elements = Arrays.asList("Water", "Fire");
         elements = new String[]{"Water", "Fire"};
         colors = "Red";
         metals = "Selen";
+        //vegetables = Arrays.asList("Cucumber", "Tomato");
         vegetables = new String[]{"Cucumber", "Tomato"};
     }
 
@@ -37,7 +39,7 @@ public class MetalsColorsData extends DataClass {
         List<String> result = new ArrayList<>();
         // TODO this will be better with String.format
         // TODO 1. Arrays.asList("1", "2").stream().mapToInt(Integer::parseInt).sum()
-// TODO 2. summary should be List<Integer> instead of List<String>
+        // TODO 2. summary should be List<Integer> instead of List<String>
         Integer sum = summary.get(0) + summary.get(1);
         result.add(SUMMARY.text + ": " + sum);
        // result.add(SUMMARY.text + ": " + Integer.toString(Integer.parseInt(summary[0]) + Integer.parseInt(summary[1])));
