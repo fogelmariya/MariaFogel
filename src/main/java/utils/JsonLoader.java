@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class JsonLoader {
 
-    public Object[][] data;
+    public Object[][] data; // TODO ??
 
     public static Object[] getData(String json) throws FileNotFoundException {
         JsonObject jsonObject = new JsonParser().parse(new FileReader(json)).getAsJsonObject();

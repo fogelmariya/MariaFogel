@@ -13,22 +13,21 @@ import static com.epam.jdi.uitests.core.settings.JDISettings.logger;
 
 public class MetalsColorsResultSection extends Section {
 
-    MetalsColorsData metalsColorsData;
+    MetalsColorsData metalsColorsData; // TODO ???
 
     @FindBy(css = ".results li")
     private TextList actualResultLog;
 
     @Step
     public void checkResult(MetalsColorsData metalsColorsData) {
-        List<String> logList = actualResultLog.getTextList();
-        List<String> data = metalsColorsData.dataToListString();
+        List<String> actualResults = actualResultLog.getTextList();
+        List<String> expectedResults = metalsColorsData.dataToListString();
 
-        // TODO In case of JDI, it will be better with log4j
-        logger.info(data.toString());
-        logger.info(logList.toString());
-        // !TODO
-        for (String string : data) {
-            Assert.assertTrue(logList.contains(string));
+        logger.info(expectedResults.toString());
+        logger.info(actualResults.toString());
+
+        for (String string : expectedResults) {
+            Assert.assertTrue(actualResults.contains(string));
         }
     }
 }

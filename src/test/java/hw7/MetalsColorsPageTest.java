@@ -8,27 +8,25 @@ import org.testng.annotations.Test;
 
 import static site.JdiSite.*;
 
-
-// TODO are you tricking me ? Where is .gitignore file ?
 public class MetalsColorsPageTest extends InitTest {
 
     @Test
     public void metalsColorsDefaultTest() {
         //1 Login on JDI site as User
         homePage.open();
-        // TODO what is the reason of new instance creation ?? Is Users.PITER_CHAILOVSKII not enough ?
+
+        // TODO I dont catch the idea...
+        // TODO You have two thins - User.class and Users.enum. Is that reasonable ?
         login(new User());
         homePage.checkOpened();
 
-        // TODO What would you do in case if you should open all of the pages ?
-        // TODO Wrote certain method for each of them ?
-        // TODO it will be better to write only ONE parametrised method for open whatever page we want
+        // TODO take a look on class work please, it will be better approach
         //2 Open Metals & Colors page by Header menu
         openPage(HeaderMenuItems.METALS_COLORS.item);
         metalsColorsPage.checkOpened();
 
         //3 Fill form Metals & Colors by data below:
-        // TODO Could you please use exactly the same approach that we're using with User ?
+        // TODO Could you please use exactly the same approach that we're using with User ? x2`
         MetalsColorsData metalsColorsData = new MetalsColorsData();
         metalsColorsPage.metalsColorsForm.setMetalsColorsData(metalsColorsData);
 

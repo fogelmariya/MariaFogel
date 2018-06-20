@@ -13,7 +13,7 @@ public class User extends DataClass {
 //        this.password = password;
 //    }
 
-    public User(){
+    public User() {
         this.login = "epam";
         this.password = "1234";
     }

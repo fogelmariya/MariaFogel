@@ -50,6 +50,7 @@ public class JdiSite extends WebSite {
     @Step
     public static void openPage(String page) {
         headerMenu.select(page);
+        // TODO what happened in case if we open another page ?
         metalsColorsPage.checkOpened();
     }
 
