@@ -10,19 +10,20 @@ import java.util.List;
 import static enums.ColorsEnum.COLOR;
 import static enums.MetalsColorsEnum.*;
 
-// TODO Lombok ?
 @AllArgsConstructor
 public class MetalsColorsData extends DataClass {
-    // TODO it will be better with List
     public List<Integer> summary;
+    // TODO it will be better with List
     public String[] elements;
 
     public String colors;
 
     public String metals;
 
+    // TODO and this will be better with List too
     public String[] vegetables;
 
+    // TODO i told you that it was not really good approach to hardcode values in the constructor
     public MetalsColorsData() {
         summary = Arrays.asList(3, 8);
         //elements = Arrays.asList("Water", "Fire");
@@ -33,16 +34,14 @@ public class MetalsColorsData extends DataClass {
         vegetables = new String[]{"Cucumber", "Tomato"};
     }
 
-    // TODO method name does not match with return data type...
     public List<String> dataToListString() {
-        // TODO do you hear smth about diamond operator ?
         List<String> result = new ArrayList<>();
-        // TODO this will be better with String.format
-        // TODO 1. Arrays.asList("1", "2").stream().mapToInt(Integer::parseInt).sum()
-        // TODO 2. summary should be List<Integer> instead of List<String>
+        // TODO this will be better with String.format x2
+        // TODO 1. Arrays.asList("1", "2").stream().mapToInt(Integer::parseInt).sum() 2x
+        // TODO 2. summary should be List<Integer> instead of List<String> 2x
         Integer sum = summary.get(0) + summary.get(1);
         result.add(SUMMARY.text + ": " + sum);
-       // result.add(SUMMARY.text + ": " + Integer.toString(Integer.parseInt(summary[0]) + Integer.parseInt(summary[1])));
+        // result.add(SUMMARY.text + ": " + Integer.toString(Integer.parseInt(summary[0]) + Integer.parseInt(summary[1])));
         result.add(ELEMENTS.text + ": " + String.join(", ", elements));
         result.add(COLOR.text + ": " + colors);
 

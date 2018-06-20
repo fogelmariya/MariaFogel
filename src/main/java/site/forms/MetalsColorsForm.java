@@ -17,7 +17,7 @@ import ru.yandex.qatools.allure.annotations.Step;
 
 public class MetalsColorsForm extends Form<MetalsColorsData> {
 
-    MetalsColorsData metalsColorsData;
+    MetalsColorsData metalsColorsData; // TODO ?
 
     @JFindBy(css = "#odds-selector .radio")
     public RadioButtons odds;
@@ -57,15 +57,16 @@ public class MetalsColorsForm extends Form<MetalsColorsData> {
         metals.select(metalsColorsData.metals);
         elements.check(metalsColorsData.elements);
         colors.select(metalsColorsData.colors);
-        // vegetables.select(metalsColorsData.vegetables);
+
+        // TODO this should be encapsulate in UI Element 'vegetables'. Make anonymous class or smth like that
         checkedVegetables.click();
-        // checkedVegetables.click();
         if (!checkedVegetables.getText().equals("")) {
             String[] realVegetables = checkedVegetables.getText().split(", ");
             for (String vegetable : realVegetables) {
                 vegetables.check(vegetable);
             }
         }
+        // TODO
         vegetables.check(metalsColorsData.vegetables);
     }
 }
