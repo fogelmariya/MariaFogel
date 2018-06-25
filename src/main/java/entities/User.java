@@ -5,16 +5,9 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 public class User extends DataClass {
-    public String login;
-    public String password;
+    public static User PETER = new User("epam", "1234", "PETER");
 
-//    public User(String login, String password){
-//        this.login = login;
-//        this.password = password;
-//    }
-
-    public User() {
-        this.login = "epam";
-        this.password = "1234";
-    }
+    String login;
+    String password;
+    String name;
 }
