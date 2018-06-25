@@ -17,7 +17,7 @@ public class MetalsColorsPageTest extends InitTest {
 
         // TODO I dont catch the idea...
         // TODO You have two thins - User.class and Users.enum. Is that reasonable ?
-        login(new User());
+        login(User.PETER);
         homePage.checkOpened();
 
         // TODO take a look on class work please, it will be better approach
