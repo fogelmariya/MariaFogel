@@ -1,7 +1,6 @@
 package entities;
 
 import com.epam.commons.DataClass;
-import lombok.AllArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,7 +15,6 @@ import static enums.MetalsEnum.SELEN;
 import static enums.VegetablesEnum.CUCUMBER;
 import static enums.VegetablesEnum.TOMATO;
 
-//@AllArgsConstructor
 public class MetalsColorsData extends DataClass {
 
     public List<Integer> summary;
@@ -48,8 +46,8 @@ public class MetalsColorsData extends DataClass {
         // TODO this will be better with String.format x2
         // TODO 1. Arrays.asList("1", "2").stream().mapToInt(Integer::parseInt).sum() 2x
         // TODO 2. summary should be List<Integer> instead of List<String> 2x
-        Integer sum = summary.get(0) + summary.get(1);
-        result.add(SUMMARY.text + ": " + sum);
+        //Integer sum = summary.get(0) + summary.get(1);
+        result.add(SUMMARY.text + ": " + summary.stream().mapToInt(Integer::intValue).sum());
         result.add(ELEMENTS.text + ": " + String.join(", ", elements));
         result.add(COLOR.text + ": " + colors);
 

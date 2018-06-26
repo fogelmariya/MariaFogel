@@ -18,7 +18,7 @@ import site.elements.Vegetables;
 
 public class MetalsColorsForm extends Form<MetalsColorsData> {
 
-    MetalsColorsData metalsColorsData; // TODO ?
+    // TODO ?
 
     @JFindBy(css = "#odds-selector .radio")
     public RadioButtons odds;
@@ -68,6 +68,7 @@ public class MetalsColorsForm extends Form<MetalsColorsData> {
         odds.select(metalsColorsData.summary.get(0).toString());
         evens.select(metalsColorsData.summary.get(1).toString());
         metals.select(metalsColorsData.metals);
+
         for (String element : metalsColorsData.elements) {
             elements.check(element);
         }

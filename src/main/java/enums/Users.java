@@ -19,16 +19,6 @@ public enum Users{
 
     // TODO I don't get it, you already have @Getter annotation,
     // TODO what is the reason of this ???
-    public String getLogin() {
-        return login;
-    }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public String getUserName(){
-        return userName;
-    }
     // !TODO
 }
