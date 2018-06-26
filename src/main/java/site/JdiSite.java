@@ -6,7 +6,6 @@ import com.epam.jdi.uitests.web.selenium.elements.composite.WebSite;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JFindBy;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JPage;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JSite;
-import entities.MetalsColorsData;
 import entities.User;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
@@ -30,7 +29,7 @@ public class JdiSite extends WebSite {
     private static Button logOutButton;
 
     @JFindBy(css = ".m-l8")
-    public static Header headerMenu;
+    public static Header menuHeader;
 
     @JPage(url = "/metals-colors.html", title = "Metal and Colors")
     public static MetalsColorsPage metalsColorsPage;
@@ -49,13 +48,7 @@ public class JdiSite extends WebSite {
 
     @Step
     public static void openPage(String page) {
-        headerMenu.select(page);
+        menuHeader.select(page);
         // TODO what happened in case if we open another page ?
-        metalsColorsPage.checkOpened();
-    }
-
-    @Step
-    public static void fillMetalsColorsForm() {
-        metalsColorsPage.metalsColorsForm.setMetalsColorsData(new MetalsColorsData());
     }
 }
