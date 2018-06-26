@@ -7,8 +7,10 @@ import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JFindB
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JPage;
 import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.JSite;
 import entities.User;
+import enums.HeaderMenuItems;
 import org.openqa.selenium.support.FindBy;
 import ru.yandex.qatools.allure.annotations.Step;
+import site.elements.MyMenu;
 import site.forms.LoginnForm;
 import site.pages.HomePageJdi;
 import site.pages.MetalsColorsPage;
@@ -28,8 +30,8 @@ public class JdiSite extends WebSite {
     @FindBy(css = ".logout .submit")
     private static Button logOutButton;
 
-    @JFindBy(css = ".m-l8")
-    public static Header menuHeader;
+    @JFindBy(css = ".nav")
+    public static MyMenu<HeaderMenuItems> menuHeader;
 
     @JPage(url = "/metals-colors.html", title = "Metal and Colors")
     public static MetalsColorsPage metalsColorsPage;

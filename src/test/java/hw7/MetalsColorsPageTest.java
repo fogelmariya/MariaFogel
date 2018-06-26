@@ -23,8 +23,7 @@ public class MetalsColorsPageTest extends InitTest {
 
         // TODO take a look on class work please, it will be better approach
         //2 Open Metals & Colors page by Header menu
-        //homePage.headerMenu.selects(METALS_COLORS);
-        openPage(METALS_COLORS.item);
+        homePage.headerMenu.selects(METALS_COLORS);
         metalsColorsPage.checkOpened();
 
         //3 Fill form Metals & Colors by data below:

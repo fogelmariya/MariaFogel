@@ -1,5 +1,10 @@
 package enums;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
+@AllArgsConstructor
 public enum HeaderMenuItems {
     HOME("Home"),
     CONTACT_FORM("Contact form"),
@@ -9,7 +14,8 @@ public enum HeaderMenuItems {
 
     public String item;
 
-    HeaderMenuItems(String item){
-        this.item = item;
+    @Override
+    public String toString() {
+        return item;
     }
 }
