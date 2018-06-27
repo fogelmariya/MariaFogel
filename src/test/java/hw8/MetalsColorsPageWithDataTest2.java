@@ -21,7 +21,7 @@ public class MetalsColorsPageWithDataTest2 extends TestInit {
     public void openHomePage() {
         //1 Login on JDI site as User
         JdiSite2.open();
-        login(new User());
+        login(User.PETER);
 
         //2 Open Metals & Colors page by Header menu
         openMetalsColorsPage();

@@ -48,12 +48,8 @@ public class JdiSite2 extends WebSite {
     }
 
     @Step
-    public static void openMetalsColorsPage() {
-        headerMenu.select(HeaderMenuItems.METALS_COLORS.item);
+    public static void openPage(String page) {
+        headerMenu.select(page);
     }
 
-    @Step
-    public static void fillMetalsColorsForm() {
-        metalsColorsPage.metalsColorsForm.setMetalsColorsData(new MetalsColorsData());
-    }
 }

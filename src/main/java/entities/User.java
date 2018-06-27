@@ -11,3 +11,4 @@ public class User extends DataClass {
     String password;
     String name;
 }
+
