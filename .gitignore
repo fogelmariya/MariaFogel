@@ -43,4 +43,3 @@ buildNumber.properties
 /build/
 *.iml
 
-# TODO IDEA's project file should be ignored to
