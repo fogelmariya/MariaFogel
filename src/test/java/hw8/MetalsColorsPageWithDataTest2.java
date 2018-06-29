@@ -36,8 +36,6 @@ public class MetalsColorsPageWithDataTest2 extends TestInit {
 
     @DataProvider
     public Object[] jsonData() throws FileNotFoundException {
-        // TODO the last data set has been deleted, actually
-        // TODO Why don't you use constant or enum or smth else ?
         return JsonLoader.getData(DatasEnum.METALS_COLORS_JSON.text);
     }
 

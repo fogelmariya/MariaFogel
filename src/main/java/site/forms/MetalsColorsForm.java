@@ -18,8 +18,6 @@ import site.elements.Vegetables;
 
 public class MetalsColorsForm extends Form<MetalsColorsData> {
 
-    // TODO ?
-
     @JFindBy(css = "#odds-selector .radio")
     public RadioButtons odds;
 
@@ -51,6 +49,7 @@ public class MetalsColorsForm extends Form<MetalsColorsData> {
     @FindBy(css = "#submit-button")
     public Button submitButton;
 
+    // TODO what the point of that ? You should customise JDI element...
     Vegetables veg = new Vegetables() {
         public void uncheck() {
             checkedVegetables.click();
