@@ -1,22 +1,26 @@
 package pageObjects;
 
-import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import enums.Users;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
 
-import java.util.List;
-
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 
-public class HomePageSelenide {
+public class HomePageCucumber {
+
+    public HomePageCucumber() {
+        page(this);
+    }
 
     @FindBy(css = ".profile-photo")
     private SelenideElement userIcon;
@@ -29,6 +33,12 @@ public class HomePageSelenide {
 
     @FindBy(css = ".form-horizontal [type='submit']")
     private SelenideElement submitButton;
+
+    @FindBy(css = ".profile-photo")
+    private static SelenideElement profilePhoto;
+
+    @FindBy(css = ".logout")
+    private static SelenideElement logOutButton;
 
     @FindBy(css = ".profile-photo span")
     private SelenideElement userName;
@@ -59,11 +69,13 @@ public class HomePageSelenide {
 
 
     @Step
+    @Given("I'm on the Home Page")
     public void openSite() {
         open("https://epam.github.io/JDI/");
     }
 
     @Step
+    @Then("The browser title is Home Page")
     public void checkHomePageTitle() {
         Assert.assertEquals(getWebDriver().getTitle(), "Home Page");
     }
@@ -77,6 +89,13 @@ public class HomePageSelenide {
     }
 
     @Step
+    public static void logout() {
+        profilePhoto.click();
+        logOutButton.click();
+    }
+
+    @Step
+    @When("I login as user (.+) with password (.+)")
     public void loginCucumber(String login, String password) {
         userIcon.click();
         loginInput.sendKeys(login);
@@ -85,11 +104,13 @@ public class HomePageSelenide {
     }
 
     @Step
-    public void checkUserName(Users user) {
-        userName.shouldHave(Condition.text(user.getUserName()));
+    @Then("The user icon  is displayed on the header and have name (.+)")
+    public void checkUserName(String name) {
+        userName.shouldHave(Condition.text(name));
     }
 
     @Step
+    @Then("In the page are 4 images and they have text under them and there are 2 main text")
     public void checkMainInterface() {
         homeImages.shouldHaveSize(4);
         for (SelenideElement image : homeImages) {
@@ -106,35 +127,58 @@ public class HomePageSelenide {
     }
 
     @Step
-    public void checkServiceDropdown(List<String> servicesExpected) {
+    @Then("Service dropdown on the top menu has 8 items with necessary texts (.+)")
+    public void checkServiceDropdown(String s1) {
         services.click();
         servicesDropdown.shouldHaveSize(8);
-        servicesDropdown.shouldHave(CollectionCondition.texts(servicesExpected));
+
+        for (SelenideElement service : servicesDropdown) {
+            Assert.assertTrue(s1.contains(service.getText()));
+        }
+        //servicesDropdown.shouldHave(CollectionCondition.texts(s1.toUpperCase()));
     }
 
     @Step
-    public void checkServiceDropdownLeft(List<String> servicesExpected) {
+    @Then("Service dropdown on the left menu has 8 items with necessary texts (.+)")
+    public void checkServiceDropdownLeft(String s1) {
         servicesLeft.click();
 
-        for (String service : servicesDropdownLeft.texts()) {
-            Assert.assertTrue(servicesExpected.contains(service.toUpperCase()));
+        System.out.println(servicesDropdownLeft.texts());
+        for (SelenideElement service : servicesDropdownLeft) {
+            Assert.assertTrue(s1.contains(service.getText().toUpperCase()));
         }
     }
 
     @Step
+    @When("I open Different Element page by Service dropdown on the top menu")
     public void openDifferentElementsPage() {
         services.click();
         servicesDropdown.get(6).click();
     }
 
     @Step
+    @When("I open Dates page")
     public void openDatesPage() {
         services.click();
         servicesDropdown.get(1).click();
     }
 
     @Step
-    public void checkDatesPageOpened(){
+    @Then("The browser title is Dates")
+    public void checkDatesPageOpened() {
         Assert.assertEquals(getWebDriver().getTitle(), "Dates");
     }
+
+    @And("^I open User Table Page through the header menu Service$")
+    public void openUserTablePage() {
+        services.click();
+        servicesDropdown.get(4).click();
+
+    }
+
+    @And("^I am on Users Table Page$")
+    public void checkUsersTablePageOpened() {
+        Assert.assertEquals(getWebDriver().getTitle(), "User Table");
+    }
 }
+
