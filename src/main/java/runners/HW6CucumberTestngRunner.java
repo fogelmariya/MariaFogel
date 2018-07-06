@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.close;
 import static pageObjects.HomePageCucumber.logout;
 
 @CucumberOptions(features = "src/test/java/hw6", glue = "pageObjects")
-public class CucumberTestngRunner extends AbstractTestNGCucumberTests {
+public class HW6CucumberTestngRunner extends AbstractTestNGCucumberTests {
 
     @BeforeSuite
     public void beforeSuite() {
