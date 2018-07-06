@@ -3,6 +3,9 @@ package pageObjects;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import enums.ColorsEnum;
+import enums.ElementsEnum;
+import enums.MetalsEnum;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
@@ -74,9 +77,9 @@ public class DifferentElementsPage {
     }
 
     @Step
-    public void selectCheckboxes(String elementsEnum) {
+    public void selectCheckboxes(ElementsEnum elementsEnum) {
         for (SelenideElement element : checkboxes) {
-            if (elementsEnum.equals(element.getText())) {
+            if (elementsEnum.text.equals(element.getText())) {
                 element.find("input").click();
                 element.find("input").shouldBe(checked);
             }
@@ -106,9 +109,9 @@ public class DifferentElementsPage {
     }
 
     @Step
-    public void checkRadioButtons(String elementToSelect) {
+    public void checkRadioButtons(MetalsEnum elementToSelect) {
         for (SelenideElement radio : radios) {
-            if (radio.getText().equals(elementToSelect)) {
+            if (radio.getText().equals(elementToSelect.text)) {
                 radio.click();
                 radio.find("input").shouldBe(checked);
             }
@@ -116,15 +119,15 @@ public class DifferentElementsPage {
     }
 
     @Step
-    public void checkDropdown(String elementToSelect) {
+    public void checkDropdown(ColorsEnum elementToSelect) {
         colorsDropdown.click();
         for (SelenideElement color : colorsList) {
             System.out.println(color.getText());
-            if (color.getText().equals(elementToSelect)) {
+            if (color.getText().equals(elementToSelect.text)) {
                 color.click();
             }
         }
-        colorsDropdown.shouldHave(text(elementToSelect));
+        colorsDropdown.shouldHave(text(elementToSelect.text));
     }
 
     @Step
