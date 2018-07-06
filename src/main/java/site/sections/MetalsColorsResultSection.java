@@ -13,7 +13,7 @@ import static com.epam.jdi.uitests.core.settings.JDISettings.logger;
 
 public class MetalsColorsResultSection extends Section {
 
-    MetalsColorsData metalsColorsData; // TODO ???
+    MetalsColorsData metalsColorsData; // TODO What is this ???
 
     @FindBy(css = ".results li")
     private TextList actualResultLog;
@@ -26,8 +26,8 @@ public class MetalsColorsResultSection extends Section {
         logger.info(expectedResults.toString());
         logger.info(actualResults.toString());
 
-        for (String string : expectedResults) {
-            Assert.assertTrue(actualResults.contains(string));
+        for (String expected : expectedResults) {
+            Assert.assertTrue(actualResults.contains(expected));
         }
     }
 }

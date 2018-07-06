@@ -11,9 +11,6 @@ import java.io.FileReader;
 import java.util.Map;
 
 public class JsonLoader {
-
-    public Object[][] data; // TODO ??
-
     public static Object[] getData(String json) throws FileNotFoundException {
         JsonObject jsonObject = new JsonParser().parse(new FileReader(json)).getAsJsonObject();
         Map<String, MetalsColorsData> metalsColorsData = new Gson().fromJson(jsonObject, new TypeToken<Map<String, MetalsColorsData>>() {

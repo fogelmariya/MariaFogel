@@ -3,6 +3,8 @@ package hw8;
 import base.TestInit;
 import entities.MetalsColorsData;
 import entities.User;
+import enums.DatasEnum;
+import enums.HeaderMenuItems;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
@@ -24,7 +26,7 @@ public class MetalsColorsPageWithDataTest2 extends TestInit {
         login(User.PETER);
 
         //2 Open Metals & Colors page by Header menu
-        openMetalsColorsPage();
+        openPage(HeaderMenuItems.METALS_COLORS.item);
     }
 
     @AfterMethod(alwaysRun = true)
@@ -34,13 +36,12 @@ public class MetalsColorsPageWithDataTest2 extends TestInit {
 
     @DataProvider
     public Object[] jsonData() throws FileNotFoundException {
-        // TODO the last data set has been deleted, actually
-        // TODO Why don't you use constant or enum or smth else ?
-        return JsonLoader.getData("src/main/resources/JDI_ex8_metalsColorsDataSet2.json");
+        return JsonLoader.getData(DatasEnum.METALS_COLORS_JSON.text);
     }
 
     @Test(dataProvider = "jsonData")
     public void jsonDataMetalsColorsTest(MetalsColorsData metalsColorsData) {
+
         //3
         metalsColorsPage.metalsColorsForm.setMetalsColorsData(metalsColorsData);
 

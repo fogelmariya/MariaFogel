@@ -1,14 +1,10 @@
 package entities;
 
+import com.epam.commons.DataClass;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-@Getter
-@NoArgsConstructor
 @AllArgsConstructor
-public class User {
-
+public class User extends DataClass {
     public static User PETER = new User("epam", "1234", "PETER");
 
     String login;

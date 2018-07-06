@@ -79,8 +79,8 @@ public class SimpleJenkinsTest extends BaseSelenide {
         differentElementsPage.selectCheckboxes(WIND);
 
         //13 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox.
-        differentElementsPage.checkLogCondition(WIND.text, true);
-        differentElementsPage.checkLogCondition(WATER.text, true);
+        differentElementsPage.checkLogCondition(WIND.text, "true");
+        differentElementsPage.checkLogCondition(WATER.text, "true");
 
         //14 Select radio
         differentElementsPage.checkRadioButtons(SELEN);
@@ -95,11 +95,11 @@ public class SimpleJenkinsTest extends BaseSelenide {
         differentElementsPage.checkLogValue(COLORS.text, GREEN.text);
 
         //18 Unselect and assert checkboxes
-        differentElementsPage.checkUnselect(WATER);
-        differentElementsPage.checkUnselect(WIND);
+        differentElementsPage.checkUnselect(WATER.text);
+        differentElementsPage.checkUnselect(WIND.text);
 
         //19 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox.
-        differentElementsPage.checkLogCondition(WIND.text, false);
-        differentElementsPage.checkLogCondition(WATER.text, false);
+        differentElementsPage.checkLogCondition(WIND.text, "false");
+        differentElementsPage.checkLogCondition(WATER.text, "false");
     }
 }
