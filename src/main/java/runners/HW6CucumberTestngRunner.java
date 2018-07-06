@@ -7,7 +7,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeSuite;
 
 import static com.codeborne.selenide.Selenide.close;
-import static pageObjects.HomePageCucumber.logout;
 
 @CucumberOptions(features = "src/test/java/hw6", glue = "pageObjects")
 public class HW6CucumberTestngRunner extends AbstractTestNGCucumberTests {
@@ -18,10 +17,9 @@ public class HW6CucumberTestngRunner extends AbstractTestNGCucumberTests {
         Configuration.browser = "chrome";
     }
 
-    @AfterMethod
+    @AfterMethod()
     public void after() {
-        logout();
-        close();
+       close();
     }
 
 }
