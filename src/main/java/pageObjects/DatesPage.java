@@ -6,7 +6,7 @@ import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.FindBy;
 import org.testng.Assert;
-import ru.yandex.qatools.allure.annotations.Step;
+import io.qameta.allure.Step;
 
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class DatesPage {
     private SelenideElement sliderLeft;
     private SelenideElement sliderRight;
 
-    @io.qameta.allure.Step
+    @Step
     public void setSliderRange(int left, int right) {
         sliderLeft = nodes.get(0);
         sliderRight = nodes.get(1);

@@ -6,21 +6,36 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.HashMap;
 
 public class SimpleTest2 {
-    @Test(groups = "Regression")
-    public void simpleSeleniumTestOne() {
+
+    WebDriver driver;
+
+    @BeforeMethod
+    public void before(){
         HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
         chromePrefs.put("download.default_directory", "target");
 
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("prefs", chromePrefs);
 
-        WebDriver driver = new ChromeDriver(options);
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
+    }
+
+    @AfterMethod
+    public void after(){
+        driver.close();
+    }
+
+    @Test(groups = "Regression")
+    public void simpleSeleniumTestOne() {
+
         driver.navigate().to("https://jdi-framework.github.io/tests/index.htm");
         Assert.assertEquals(driver.getTitle(), "Index Page");
 
@@ -34,20 +49,11 @@ public class SimpleTest2 {
         WebElement userName = driver.findElement(By.cssSelector(".profile-photo span"));
         Assert.assertTrue(userName.isDisplayed());
         Assert.assertEquals(userName.getText(), "PITER CHAILOVSKII");
-
-        driver.close();
-    }
+        }
 
     @Test(groups = "Regression")
     public void simpleSeleniumTestTwo() {
-        HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
-        chromePrefs.put("download.default_directory", "target");
 
-        ChromeOptions options = new ChromeOptions();
-        options.setExperimentalOption("prefs", chromePrefs);
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
         driver.navigate().to("https://jdi-framework.github.io/tests/index.htm");
         Assert.assertEquals(driver.getTitle(), "Index Page");
 
@@ -61,20 +67,11 @@ public class SimpleTest2 {
         WebElement userName = driver.findElement(By.cssSelector(".profile-photo span"));
         Assert.assertTrue(userName.isDisplayed());
         Assert.assertEquals(userName.getText(), "PITER CHAILOVSKII");
-
-        driver.close();
-    }
+        }
 
     @Test(groups = "Regression")
     public void simpleSeleniumTestThree() {
-        HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
-        chromePrefs.put("download.default_directory", "target");
 
-        ChromeOptions options = new ChromeOptions();
-        options.setExperimentalOption("prefs", chromePrefs);
-
-        WebDriver driver = new ChromeDriver(options);
-        driver.manage().window().maximize();
         driver.navigate().to("https://jdi-framework.github.io/tests/index.htm");
         Assert.assertEquals(driver.getTitle(), "Index Page");
 
@@ -88,7 +85,5 @@ public class SimpleTest2 {
         WebElement userName = driver.findElement(By.cssSelector(".profile-photo span"));
         Assert.assertTrue(userName.isDisplayed());
         Assert.assertEquals(userName.getText(), "PITER CHAILOVSKII");
-
-        driver.close();
-    }
+        }
 }

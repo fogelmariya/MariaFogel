@@ -3,44 +3,51 @@ package hw8;
 import base.TestInit;
 import entities.MetalsColorsData;
 import entities.User;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import enums.HeaderMenuItems;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import site.JdiSite2;
+import utils.JavaPropertyLoader;
 import utils.JsonLoader;
 
 import java.io.FileNotFoundException;
 
-import static site.JdiSite2.*;
+import static site.JdiSite.*;
 
 
-public class MetalsColorsPageWithDataTest2 extends TestInit {
 
-    @BeforeMethod
+public class MetalsColorsPageWithDataTest extends TestInit {
+
+    private JavaPropertyLoader javaPropertyLoader = new JavaPropertyLoader();
+    private String url = javaPropertyLoader.getProperty("site.url");
+
+
+    @BeforeClass
     public void openHomePage() {
         //1 Login on JDI site as User
-        JdiSite2.open();
-        login(User.PETER);
-
-        //2 Open Metals & Colors page by Header menu
-        openMetalsColorsPage();
+            homePage.open();
+            login(User.PETER);
+            homePage.checkOpened();
     }
 
-    @AfterMethod(alwaysRun = true)
+    @AfterClass
     public void tearDown() {
-         logout();
+        // logout();
     }
 
     @DataProvider
     public Object[] jsonData() throws FileNotFoundException {
-        // TODO the last data set has been deleted, actually
-        // TODO Why don't you use constant or enum or smth else ?
-        return JsonLoader.getData("src/main/resources/JDI_ex8_metalsColorsDataSet2.json");
+        return JsonLoader.getData("src/main/resources/JDI_ex8_metalsColorsDataSet.json");
     }
 
     @Test(dataProvider = "jsonData")
     public void jsonDataMetalsColorsTest(MetalsColorsData metalsColorsData) {
+
+        //2 Open Metals & Colors page by Header menu
+        openPage(HeaderMenuItems.METALS_COLORS.item);
+        metalsColorsPage.checkOpened();
+
         //3
         metalsColorsPage.metalsColorsForm.setMetalsColorsData(metalsColorsData);
 

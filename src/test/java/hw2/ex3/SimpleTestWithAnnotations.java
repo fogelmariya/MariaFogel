@@ -4,11 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.Assert;
 import org.testng.annotations.*;
-
-import java.util.HashMap;
 
 public class SimpleTestWithAnnotations {
 
@@ -45,11 +42,6 @@ public class SimpleTestWithAnnotations {
     }
     @Test
     public void simpleSeleniumTestOne() {
-        HashMap<String, Object> chromePrefs = new HashMap<String, Object>();
-        chromePrefs.put("download.default_directory", "target");
-
-        ChromeOptions options = new ChromeOptions();
-        options.setExperimentalOption("prefs", chromePrefs);
 
         driver.navigate().to("https://jdi-framework.github.io/tests/index.htm");
         Assert.assertEquals(driver.getTitle(), "Index Page");

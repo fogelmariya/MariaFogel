@@ -13,7 +13,7 @@ import com.epam.jdi.uitests.web.selenium.elements.pageobjects.annotations.object
 import entities.MetalsColorsData;
 import enums.ColorsEnum;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.allure.annotations.Step;
+import io.qameta.allure.Step;
 
 public class MetalsColorsForm extends Form<MetalsColorsData> {
 

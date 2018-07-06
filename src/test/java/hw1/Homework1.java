@@ -14,12 +14,11 @@ import static org.testng.Assert.assertTrue;
 
 public class Homework1 {
 
-    List<String> textUnderImageExpected = Arrays.asList(
+    private List<String> textUnderImageExpected = Arrays.asList(
             "To include good practices and ideas from successful EPAM project",
             "To be flexible and customizable", "To be multiplatform",
             "Already have good base (about 20 internal and some external projects), wish to get more…");
 
-    //1 Create a new test
     @Test
     public void homePageTest() {
         //2 Open test site by URL
@@ -47,7 +46,7 @@ public class Homework1 {
 
         //7 Assert that there are 4 items on the header section are displayed and they have proper texts
         List<WebElement> topElements = driver.findElements(By.cssSelector(".nav > li"));
-        Assert.assertTrue(topElements.size() == 4);
+        Assert.assertEquals(topElements.size(), 4);
         Assert.assertEquals(topElements.get(0).getText(), "HOME");
         Assert.assertEquals(topElements.get(1).getText().toLowerCase(), "contact form");
         Assert.assertEquals(topElements.get(2).getText().toLowerCase().replaceAll(" ", ""), "service");

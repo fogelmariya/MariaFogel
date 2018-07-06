@@ -10,7 +10,7 @@ import entities.MetalsColorsData;
 import entities.User;
 import enums.HeaderMenuItems;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.allure.annotations.Step;
+import io.qameta.allure.Step;
 import site.forms.LoginForm;
 import site.pages.HomePageJdi2;
 import site.pages.MetalsColorsPage;

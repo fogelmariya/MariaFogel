@@ -5,7 +5,7 @@ import com.epam.jdi.uitests.web.selenium.elements.composite.Section;
 import com.epam.web.matcher.testng.Assert;
 import entities.MetalsColorsData;
 import org.openqa.selenium.support.FindBy;
-import ru.yandex.qatools.allure.annotations.Step;
+import io.qameta.allure.Step;
 
 import java.util.List;
 

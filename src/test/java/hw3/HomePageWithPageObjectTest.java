@@ -1,11 +1,16 @@
 package hw3;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Flaky;
+import io.qameta.allure.Story;
+import listeners.AllureAttachmentListener;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pageObjects.HomePage;
 
@@ -13,6 +18,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
+@Feature("Home page")
+@Story("Login and check interface")
+@Listeners({AllureAttachmentListener.class})
 public class HomePageWithPageObjectTest {
 
     private List<String> textUnderImageExpected = Arrays.asList(
@@ -48,6 +56,7 @@ public class HomePageWithPageObjectTest {
         driver.manage().window().maximize();
     }
 
+    @Flaky
     @Test
     public void homePageTest() {
         //2 Open test site by URL
@@ -90,7 +99,6 @@ public class HomePageWithPageObjectTest {
         //14 Assert that there is Footer
         homePage.checkFooterExist();
 
-        //15 Close Browser
         driver.close();
     }
 

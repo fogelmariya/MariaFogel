@@ -1,16 +1,15 @@
 package base;
 
-import com.codeborne.selenide.Configuration;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeClass;
 
 public class BaseSelenide {
 
 
-    @BeforeSuite
+    @BeforeClass
     public void before(){
-        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-        Configuration.browser = "chrome";
+//        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+//        Configuration.browser = "chrome";
 
     }
 
